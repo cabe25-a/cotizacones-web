@@ -182,47 +182,43 @@ body {
 .modal-content { padding: 80px 10%; text-align: center; }
 .close { position: fixed; right: 40px; top: 30px; font-size: 40px; cursor: pointer; }
 
-/* --- CONFIGURACIÓN DE FLASHES DISPONIBLES --- */
+/* --- SOLUCIÓN DEFINITIVA PARA PC Y MÓVIL --- */
 .flash-grid {
     display: grid;
-    /* En PC: Crea cuadrícula. En Celu: Se adapta a 1 columna automáticamente */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    /* Ajusta automáticamente las columnas según el tamaño de la pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    padding: 40px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-items: center; /* Centra los items si sobra espacio */
-}
-
-//* --- FLASH GRID: SOLUCIÓN FINAL --- */
-.flash-grid {
-    display: grid;
-    /* En PC: ajusta automáticamente el número de columnas */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 40px;
     padding: 60px 5%;
-    max-width: 1200px;
-    margin: 0 auto; /* Centra todo el bloque en la pantalla */
-    justify-content: center; /* Centra los elementos si sobran espacios */
+    max-width: 1200px; /* Evita que la web se estire demasiado en monitores pro */
+    margin: 0 auto !important; /* Fuerza el centrado horizontal */
+    justify-content: center; /* Centra los elementos si la fila no está llena */
+    align-items: start;
 }
 
-/* Ajuste para cada tarjeta de diseño */
 .flash-item {
     background: #000;
     border: 1px solid #1a1a1a;
     width: 100%;
-    max-width: 350px; /* Evita que crezcan demasiado en pantallas grandes */
-    margin: 0 auto; /* Centra la tarjeta dentro de su columna */
+    max-width: 350px; /* Tamaño ideal para que no se vea gigante en PC */
+    margin: 0 auto; /* Centra la tarjeta dentro de su espacio de columna */
     display: flex;
     flex-direction: column;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .flash-item img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1; /* Hace que todos los diseños sean cuadrados y parejos */
+    aspect-ratio: 1 / 1; /* Mantiene todos los diseños cuadrados y uniformes */
     object-fit: cover;
+}
+
+/* --- REGLA PARA MÓVIL (MANTIENE TU LISTA) --- */
+@media (max-width: 768px) {
+    .flash-grid {
+        grid-template-columns: 1fr; /* Una sola columna para el celular */
+        padding: 40px 10%;
+    }
 }
 
 /* --- MODO CELULAR (LISTA VERTICAL) --- */
