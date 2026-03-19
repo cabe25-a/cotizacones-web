@@ -182,33 +182,48 @@ body {
 .modal-content { padding: 80px 10%; text-align: center; }
 .close { position: fixed; right: 40px; top: 30px; font-size: 40px; cursor: pointer; }
 
+/* --- CONFIGURACIÓN DE FLASHES DISPONIBLES --- */
 .flash-grid {
     display: grid;
-    /* Esto hace que las tarjetas no se estiren locamente */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 350px)); 
+    /* En PC: Crea cuadrícula. En Celu: Se adapta a 1 columna automáticamente */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 30px;
-    padding: 60px 5%;
-    /* Esto centra toda la cuadrícula en la pantalla */
-    justify-content: center; 
+    padding: 40px 5%;
     max-width: 1200px;
     margin: 0 auto;
+    justify-items: center; /* Centra los items si sobra espacio */
 }
 
+/* Ajustes específicos para Celulares (Lista) */
+@media (max-width: 600px) {
+    .flash-grid {
+        /* Fuerza a que solo haya 1 columna (Lista) */
+        grid-template-columns: 1fr; 
+        padding: 20px 10%;
+    }
+    
+    .flash-item {
+        width: 100%; /* Que ocupe todo el ancho disponible del celu */
+        max-width: 350px; /* Pero que no se deforme demasiado */
+    }
+}
+
+/* Ajustes para cada diseño individual */
 .flash-item {
     background: #000;
     border: 1px solid #1a1a1a;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido dentro de cada tarjeta */
-    padding-bottom: 20px;
     transition: 0.3s;
 }
 
 .flash-item img {
     width: 100%;
     height: auto;
+    aspect-ratio: 1 / 1; /* Esto hace que todas las fotos sean cuadradas y uniformes */
     object-fit: cover;
-    display: block;
+}
 }
 /* LA IMAGEN - EL CAMBIO IMPORTANTE */
 .flash-item img {
