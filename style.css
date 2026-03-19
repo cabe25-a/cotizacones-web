@@ -182,15 +182,42 @@ body {
 .modal-content { padding: 80px 10%; text-align: center; }
 .close { position: fixed; right: 40px; top: 30px; font-size: 40px; cursor: pointer; }
 
+/* --- FLASH GRID CORREGIDO (RESPECTA COLOR) --- */
 .flash-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px; margin-top: 50px;
+    gap: 40px;
+    padding: 60px 5%;
 }
 
-.flash-item { border: 1px solid #222; padding: 15px; background: #050505; }
-.flash-item img { width: 100%; filter: grayscale(100%); transition: 0.3s; }
-.flash-item img:hover { filter: grayscale(0%); }
+.flash-item {
+    background: #000; /* Fondo totalmente negro */
+    border: 1px solid #1a1a1a; /* Borde muy sutil */
+    text-align: center;
+    padding: 0;
+    overflow: hidden; /* Necesario para el efecto de zoom */
+    transition: 0.3s ease;
+}
+
+.flash-item:hover {
+    border-color: #fff; /* Borde se vuelve blanco al pasar el ratón */
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* LA IMAGEN - EL CAMBIO IMPORTANTE */
+.flash-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* QUITADO: filter: grayscale(100%); <- Esto borraba el rojo */
+    transition: transform 0.6s ease, opacity 0.3s ease;
+}
+
+/* Efecto visual suave al pasar el ratón, manteniendo los colores */
+.flash-item:hover img {
+    transform: scale(1.05); /* Sutil zoom de 5% */
+    opacity: 0.9; /* Se vuelve un pelín más transparente */
+}
 
 .flash-price { font-size: 1.5rem; font-weight: 900; margin: 10px 0; }
 .btn-direct-wa {
@@ -215,3 +242,70 @@ body {
 .btn-booking-white:hover { background: #ccc; transform: translateY(-3px); }
 
 .footer { padding: 60px; text-align: center; opacity: 0.3; font-size: 0.6rem; text-transform: uppercase; }
+/* --- CAMBIO DE FONDO GLOBAL --- */
+body {
+    background-color: #000;
+    /* Reemplaza la URL con la ruta a tu diseño editado */
+    background-image: url('imagenes/bg-diseno.png'); 
+    background-size: cover;
+    background-attachment: fixed; /* La imagen se queda quieta al hacer scroll */
+    background-position: center;
+}
+
+
+
+/* Grid para Misión y Visión */
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.mv-item {
+    padding: 30px;
+    border: 1px solid #222;
+    transition: 0.3s;
+}
+
+.mv-item:hover {
+    border-color: #fff;
+}
+
+.mv-item h3 {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.mv-item p {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .mission-vision-grid {
+        grid-template-columns: 1fr;
+    }
+}/* --- CRÉDITOS FOOTER --- */
+/* --- CRÉDITOS FOOTER MÁS GRANDES --- */
+.footer-credits {
+    margin-top: 60px;
+    text-align: center;
+    border-top: 1px solid #111;
+    padding: 40px 0; /* Más espacio arriba y abajo */
+    color: #888; /* Un gris más claro para que se lea mejor */
+    font-size: 0.9rem; /* Aumentado de 0.6 a 0.9 */
+    letter-spacing: 3px; /* Espaciado más elegante */
+    text-transform: uppercase;
+}
+
+/* El resalte de tu nombre */
+.highlight-credit {
+    color: #fff;
+    font-weight: 50; /* Super negrita */
+    padding-bottom: 2px;
+}
