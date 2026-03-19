@@ -182,16 +182,16 @@ body {
 .modal-content { padding: 80px 10%; text-align: center; }
 .close { position: fixed; right: 40px; top: 30px; font-size: 40px; cursor: pointer; }
 
-/* --- SOLUCIÓN DEFINITIVA PARA PC Y MÓVIL --- */
+/* --- CONFIGURACIÓN FLASHES: PC Y MÓVIL --- */
 .flash-grid {
     display: grid;
-    /* Ajusta automáticamente las columnas según el tamaño de la pantalla */
+    /* En PC genera columnas automáticas, en móvil se adapta */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    gap: 40px;
     padding: 60px 5%;
-    max-width: 1200px; /* Evita que la web se estire demasiado en monitores pro */
-    margin: 0 auto !important; /* Fuerza el centrado horizontal */
-    justify-content: center; /* Centra los elementos si la fila no está llena */
+    max-width: 1200px;
+    margin: 0 auto !important; /* Centra la cuadrícula en PC */
+    justify-content: center;
     align-items: start;
 }
 
@@ -199,38 +199,66 @@ body {
     background: #000;
     border: 1px solid #1a1a1a;
     width: 100%;
-    max-width: 350px; /* Tamaño ideal para que no se vea gigante en PC */
-    margin: 0 auto; /* Centra la tarjeta dentro de su espacio de columna */
+    max-width: 350px; /* Tamaño máximo para que no se vea gigante en monitores */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     transition: 0.3s ease;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 .flash-item img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1; /* Mantiene todos los diseños cuadrados y uniformes */
+    aspect-ratio: 1 / 1; /* Todos los diseños cuadrados */
     object-fit: cover;
+    transition: transform 0.6s ease, opacity 0.3s ease;
 }
 
-/* --- REGLA PARA MÓVIL (MANTIENE TU LISTA) --- */
-@media (max-width: 768px) {
-    .flash-grid {
-        grid-template-columns: 1fr; /* Una sola columna para el celular */
-        padding: 40px 10%;
-    }
+.flash-item:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
 }
 
-/* --- MODO CELULAR (LISTA VERTICAL) --- */
+.flash-price { 
+    font-size: 1.5rem; 
+    font-weight: 900; 
+    margin: 15px 0 5px 0; 
+    color: #fff;
+}
+
+/* --- BOTÓN LO QUIERO --- */
+.btn-direct-wa {
+    display: inline-block; 
+    padding: 10px 20px; 
+    border: 1px solid #444;
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 0.7rem; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.btn-direct-wa:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+/* --- REGLA UNIFICADA PARA MÓVIL (LISTA VERTICAL) --- */
 @media (max-width: 768px) {
     .flash-grid {
-        grid-template-columns: 1fr; /* Fuerza una sola columna */
+        grid-template-columns: 1fr; /* Una sola columna: modo lista */
         padding: 40px 10%;
-        gap: 50px; /* Más espacio entre diseños para que respiren */
+        gap: 50px; /* Espacio para que cada diseño respire */
     }
 
     .flash-item {
-        max-width: 100%; /* Que ocupe el ancho del celular */
+        max-width: 100%; /* Ocupa el ancho del celu */
     }
 }
 
@@ -246,21 +274,7 @@ body {
     color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase;
 }
 
-/* BOTÓN COTIZAR BLANCO */
-.btn-booking-white {
-    display: inline-block;
-    background: #fff;
-    color: #000;
-    padding: 18px 50px;
-    margin-top: 60px;
-    text-decoration: none;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: 0.3s;
-}
 
-.btn-booking-white:hover { background: #ccc; transform: translateY(-3px); }
 
 .footer { padding: 60px; text-align: center; opacity: 0.3; font-size: 0.6rem; text-transform: uppercase; }
 /* --- CAMBIO DE FONDO GLOBAL --- */
@@ -272,8 +286,6 @@ body {
     background-attachment: fixed; /* La imagen se queda quieta al hacer scroll */
     background-position: center;
 }
-
-
 
 /* Grid para Misión y Visión */
 .mission-vision-grid {
