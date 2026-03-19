@@ -1,0 +1,214 @@
+:root {
+    --bg: #000000;
+    --text: #ffffff;
+    --gray: #888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* NAVBAR REFORMADA */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    background-color: #000000; /* Fondo negro sólido para que no se pierda con las fotos */
+    border-bottom: 1px solid #111;
+}
+
+.brand { 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    letter-spacing: -1px;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+/* Contenedor central mejorado */
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-flash-highlight {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    padding: 8px 15px;
+    border: 1px solid #ffffff;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.btn-flash-highlight:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Enlaces de la derecha */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-links a { 
+    color: white; 
+    text-decoration: none; 
+    font-size: 0.75rem; 
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* AJUSTE PARA MÓVILES (Celular) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px 5%;
+        gap: 15px;
+    }
+    .nav-center {
+        order: 2; /* Pone el botón de diseños al medio */
+    }
+    .nav-links {
+        order: 3;
+        gap: 15px;
+        justify-content: center;
+    }
+    .brand {
+        order: 1;
+    }
+}
+
+/* HERO */
+.hero {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; letter-spacing: -3px; }
+.hero p { color: var(--gray); text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; }
+
+/* GALLERY PRINCIPAL */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.item {
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+    filter: grayscale(100%);
+    transition: 0.6s ease;
+    z-index: 1;
+}
+
+.item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+.label {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+}
+
+/* FAQ SECTION */
+.faq-section { padding: 100px 10%; border-top: 1px solid #111; }
+.faq-title { text-align: center; margin-bottom: 50px; font-size: 1.2rem; letter-spacing: 3px; }
+.faq-item { border-bottom: 1px solid #222; }
+
+.faq-question {
+    width: 100%; background: none; border: none; color: #fff;
+    padding: 30px 0; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between;
+    font-size: 1rem; text-transform: uppercase;
+}
+
+.faq-answer {
+    max-height: 0; overflow: hidden; transition: 0.4s ease;
+    color: var(--gray); line-height: 1.6;
+}
+
+.faq-item.active .faq-answer { max-height: 200px; padding-bottom: 30px; }
+
+/* MODAL */
+.modal {
+    display: none; position: fixed; z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: #000; overflow-y: auto;
+}
+
+.modal-content { padding: 80px 10%; text-align: center; }
+.close { position: fixed; right: 40px; top: 30px; font-size: 40px; cursor: pointer; }
+
+.flash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px; margin-top: 50px;
+}
+
+.flash-item { border: 1px solid #222; padding: 15px; background: #050505; }
+.flash-item img { width: 100%; filter: grayscale(100%); transition: 0.3s; }
+.flash-item img:hover { filter: grayscale(0%); }
+
+.flash-price { font-size: 1.5rem; font-weight: 900; margin: 10px 0; }
+.btn-direct-wa {
+    display: inline-block; padding: 10px 20px; border: 1px solid #444;
+    color: #fff; text-decoration: none; font-size: 0.7rem; text-transform: uppercase;
+}
+
+/* BOTÓN COTIZAR BLANCO */
+.btn-booking-white {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 18px 50px;
+    margin-top: 60px;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.btn-booking-white:hover { background: #ccc; transform: translateY(-3px); }
+
+.footer { padding: 60px; text-align: center; opacity: 0.3; font-size: 0.6rem; text-transform: uppercase; }
