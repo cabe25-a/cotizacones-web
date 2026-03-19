@@ -13,19 +13,25 @@ body {
     overflow-x: hidden;
 }
 
-/* NAVBAR REFORMADA */
+/* NAVBAR REFORMADA PARA CENTRADO PERFECTO */
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Asegura que esté por encima de todo */
-    background-color: #000000; /* Fondo negro sólido para que no se pierda con las fotos */
+    z-index: 1000;
+    background-color: #000000;
     border-bottom: 1px solid #111;
+}
+
+/* 1. Lado Izquierdo (Marca) */
+.brand-container {
+    flex: 1; /* Ocupa espacio disponible a la izquierda */
+    display: flex;
+    justify-content: flex-start;
 }
 
 .brand { 
@@ -36,9 +42,9 @@ body {
     white-space: nowrap;
 }
 
-/* Contenedor central mejorado */
+/* 2. Centro (Botón con recuadro) - LA CLAVE */
 .nav-center {
-    flex: 1;
+    flex: 0 0 200px; /* Ancho fijo para el contenedor central */
     display: flex;
     justify-content: center;
 }
@@ -61,12 +67,12 @@ body {
     color: #000000;
 }
 
-/* Enlaces de la derecha */
+/* 3. Lado Derecho (Enlaces) */
 .nav-links {
+    flex: 1; /* Ocupa espacio disponible a la derecha */
     display: flex;
-    gap: 20px;
-    flex: 1;
     justify-content: flex-end;
+    gap: 20px;
 }
 
 .nav-links a { 
@@ -77,23 +83,20 @@ body {
     white-space: nowrap;
 }
 
-/* AJUSTE PARA MÓVILES (Celular) */
+/* AJUSTE PARA MÓVILES */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         padding: 15px 5%;
         gap: 15px;
     }
-    .nav-center {
-        order: 2; /* Pone el botón de diseños al medio */
-    }
-    .nav-links {
-        order: 3;
-        gap: 15px;
+    .brand-container, .nav-center, .nav-links {
+        width: 100%;
         justify-content: center;
+        flex: none;
     }
-    .brand {
-        order: 1;
+    .nav-center {
+        margin: 10px 0;
     }
 }
 
