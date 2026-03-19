@@ -194,25 +194,25 @@ body {
     justify-items: center; /* Centra los items si sobra espacio */
 }
 
-/* Ajustes específicos para Celulares (Lista) */
-@media (max-width: 600px) {
-    .flash-grid {
-        /* Fuerza a que solo haya 1 columna (Lista) */
-        grid-template-columns: 1fr; 
-        padding: 20px 10%;
-    }
-    
-    .flash-item {
-        width: 100%; /* Que ocupe todo el ancho disponible del celu */
-        max-width: 350px; /* Pero que no se deforme demasiado */
-    }
+//* --- FLASH GRID: SOLUCIÓN FINAL --- */
+.flash-grid {
+    display: grid;
+    /* En PC: ajusta automáticamente el número de columnas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 40px;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centra todo el bloque en la pantalla */
+    justify-content: center; /* Centra los elementos si sobran espacios */
 }
 
-/* Ajustes para cada diseño individual */
+/* Ajuste para cada tarjeta de diseño */
 .flash-item {
     background: #000;
     border: 1px solid #1a1a1a;
     width: 100%;
+    max-width: 350px; /* Evita que crezcan demasiado en pantallas grandes */
+    margin: 0 auto; /* Centra la tarjeta dentro de su columna */
     display: flex;
     flex-direction: column;
     transition: 0.3s;
@@ -221,17 +221,21 @@ body {
 .flash-item img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1; /* Esto hace que todas las fotos sean cuadradas y uniformes */
+    aspect-ratio: 1 / 1; /* Hace que todos los diseños sean cuadrados y parejos */
     object-fit: cover;
 }
-}
-/* LA IMAGEN - EL CAMBIO IMPORTANTE */
-.flash-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    /* QUITADO: filter: grayscale(100%); <- Esto borraba el rojo */
-    transition: transform 0.6s ease, opacity 0.3s ease;
+
+/* --- MODO CELULAR (LISTA VERTICAL) --- */
+@media (max-width: 768px) {
+    .flash-grid {
+        grid-template-columns: 1fr; /* Fuerza una sola columna */
+        padding: 40px 10%;
+        gap: 50px; /* Más espacio entre diseños para que respiren */
+    }
+
+    .flash-item {
+        max-width: 100%; /* Que ocupe el ancho del celular */
+    }
 }
 
 /* Efecto visual suave al pasar el ratón, manteniendo los colores */
